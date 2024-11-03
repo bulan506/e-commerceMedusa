@@ -10,7 +10,7 @@ services:
       - "7001:7001"
     environment:
       # Conexión directa a la BD usando IP externa
-      - DATABASE_URL=postgres://TEST:TESTTEST@34.136.48.129:5432/medusa_db # RECORDAR CAMBIAR LA IP
+      - DATABASE_URL=postgres://TEST:TESTTEST@34.56.60.234:5432/medusa_db # RECORDAR CAMBIAR LA IP
       - JWT_SECRET=something
       - COOKIE_SECRET=something
       - DATABASE_TYPE=postgres

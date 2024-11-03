@@ -5,11 +5,14 @@ FROM node:16
 WORKDIR /app/backend
 
 # Copia los archivos de configuración de dependencias
-COPY package.json .
-COPY yarn.lock .
+COPY package.json ./
+COPY yarn.lock* ./ 
+
+
+RUN npm install
 
 # Instala las dependencias
-RUN yarn install
+RUN yarn 
 
 # Copia el resto de los archivos del proyecto
 COPY . .

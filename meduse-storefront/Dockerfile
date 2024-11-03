@@ -5,11 +5,13 @@ FROM node:16
 WORKDIR /app/storefront
 
 # Copia los archivos de configuración de dependencias
-COPY package.json .
-COPY yarn.lock .
+COPY package.json ./
+COPY yarn.lock* ./ 
+
 
 # Instala las dependencias
-RUN yarn install
+RUN npm install
+RUN yarn
 
 # Copia el resto de los archivos del proyecto
 COPY . .
