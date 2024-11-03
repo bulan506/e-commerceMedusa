@@ -35,6 +35,5 @@ Thumbs.db
 *.sublime-workspace
 *.sublime-project
 
-# Medusa specific
-**/data
+
 **/uploads/

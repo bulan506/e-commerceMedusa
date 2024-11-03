@@ -6,18 +6,19 @@ WORKDIR /app/storefront
 
 # Copia los archivos de configuración de dependencias
 COPY package.json ./
-COPY yarn.lock* ./ 
+COPY yarn.lock* ./
 
 
 # Instala las dependencias
-RUN npm install
-RUN yarn
+RUN yarn install 
+    
 
 # Copia el resto de los archivos del proyecto
 COPY . .
 
-# Expone el puerto para el frontend
+
+# Expone el puerto necesario
 EXPOSE 8000
 
-# Comando para iniciar la aplicación en modo desarrollo
+# Comando para iniciar la aplicación
 CMD ["yarn", "dev"]
