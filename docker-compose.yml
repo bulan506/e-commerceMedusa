@@ -5,56 +5,56 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9000:9000"
-      - "7000:7000"
       - "7001:7001"
     environment:
-      - DATABASE_URL=postgres://TEST:TESTTEST@34.56.60.234:5432/medusa_db
+      - DATABASE_URL=postgres://TEST:TESTTEST@34.122.99.107:5432/medusa_db
       - JWT_SECRET=something
       - COOKIE_SECRET=something
       - DATABASE_TYPE=postgres
-      - ADMIN_CORS=http://localhost:7000,http://localhost:7001
-      - STORE_CORS=http://localhost:8000
+      - ADMIN_CORS=http://localhost:7700
+      - STORE_CORS=http://localhost:8000,http://localhost:8100
       - NODE_ENV=development
       - HOST=0.0.0.0
-
     volumes:
       - ./medusa-backend:/app/backend
       - /app/backend/node_modules
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "--no-verbose",
-          "--tries=1",
-          "--spider",
-          "http://localhost:9000/health",
-        ]
-      interval: 30s
-      timeout: 5s
-      retries: 3
     networks:
       - medusa-network
     restart: unless-stopped
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    image: admin:latest
+    restart: always
+    depends_on:
+      - backend
+    container_name: medusa-admin
+    ports:
+      - "7700:7700"
+    environment:
+      MEDUSA_BACKEND_URL: http://backend:9000
+      NODE_OPTIONS: --openssl-legacy-provider
+    networks:
+      - medusa-network
 
   storefront:
     build:
-      context: ./meduse-storefront
+      context: ./storefront
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8100:8100"
     environment:
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://backend:9000
-      - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JB8DVWNPHW2RASR2MX7D88P7
+      - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JBB9STPSNXS0ZGFEQ7VDGB5T
       - REVALIDATE_WINDOW=10
       - NODE_ENV=development
     volumes:
-      - ./meduse-storefront:/app/storefront
+      - ./storefront:/app/storefront
       - /app/storefront/node_modules
       - /app/storefront/.next
     depends_on:
-      backend:
-        condition: service_healthy
+      - backend
     networks:
       - medusa-network
     restart: unless-stopped
