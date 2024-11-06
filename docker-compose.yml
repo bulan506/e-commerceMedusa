@@ -15,11 +15,6 @@ services:
       - STORE_CORS=http://35.239.179.163:8000,http://35.239.179.163:8100
       - NODE_ENV=development
       - HOST=0.0.0.0
-    volumes:
-      - ./medusa-backend:/app/backend
-      - /app/backend/node_modules
-      - backend-dist:/app/backend/dist
-
     networks:
       - medusa-network
     restart: unless-stopped
@@ -51,10 +46,6 @@ services:
       - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JBB9STPSNXS0ZGFEQ7VDGB5T
       - REVALIDATE_WINDOW=10
       - NODE_ENV=development
-    volumes:
-      - ./storefront:/app/storefront
-      - /app/storefront/node_modules
-      - /app/storefront/.next
     depends_on:
       - backend
     networks:
@@ -63,6 +54,3 @@ services:
 networks:
   medusa-network:
     driver: bridge
-
-volumes:
-  backend-dist:
