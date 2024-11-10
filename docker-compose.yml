@@ -1,3 +1,4 @@
+version: "3"
 services:
   backend:
     build:
@@ -11,8 +12,8 @@ services:
       - JWT_SECRET=something
       - COOKIE_SECRET=something
       - DATABASE_TYPE=postgres
-      - ADMIN_CORS=http://35.239.179.163:7700
-      - STORE_CORS=http://35.239.179.163:8000,http://35.239.179.163:8100
+      - ADMIN_CORS=http://${IP_ADDRESS}:7700
+      - STORE_CORS=http://${IP_ADDRESS}:8000,http://${IP_ADDRESS}:8100
       - NODE_ENV=development
       - HOST=0.0.0.0
     networks:
@@ -30,7 +31,7 @@ services:
     ports:
       - "7700:7700"
     environment:
-      MEDUSA_BACKEND_URL: http://35.239.179.163:9000
+      MEDUSA_BACKEND_URL: http://${IP_ADDRESS}:9000
       NODE_OPTIONS: --openssl-legacy-provider
     networks:
       - medusa-network
@@ -42,7 +43,7 @@ services:
     ports:
       - "8100:8100"
     environment:
-      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://35.239.179.163:9000
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://${IP_ADDRESS}:9000
       - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JBB9STPSNXS0ZGFEQ7VDGB5T
       - REVALIDATE_WINDOW=10
       - NODE_ENV=development
@@ -54,3 +55,5 @@ services:
 networks:
   medusa-network:
     driver: bridge
+x-environment:
+  IP_ADDRESS: cccccccccccc
