@@ -11,8 +11,8 @@ services:
       - JWT_SECRET=my_secrectt
       - COOKIE_SECRET=my_secrectt
       - DATABASE_TYPE=postgres
-      - ADMIN_CORS=http://34.57.128.166:7700
-      - STORE_CORS=http://34.57.128.166:8000,http://34.57.128.166:8100
+      - ADMIN_CORS=http://34.121.77.26:7700
+      - STORE_CORS=http://34.121.77.26:8000,http://34.121.77.26:8100
       - NODE_ENV=development
       - HOST=0.0.0.0
     networks:
@@ -30,7 +30,7 @@ services:
     ports:
       - "7700:7700"
     environment:
-      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://34.57.128.166:9000
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://34.121.77.26:9000
       - NODE_OPTIONS=--openssl-legacy-provider
     networks:
       - medusa-network
@@ -42,7 +42,7 @@ services:
     ports:
       - "8100:8100"
     environment:
-      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://34.57.128.166:9000
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://34.121.77.26:9000
       - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JBB9STPSNXS0ZGFEQ7VDGB5T
       - REVALIDATE_WINDOW=10
       - NODE_ENV=development
