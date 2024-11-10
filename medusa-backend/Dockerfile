@@ -20,7 +20,7 @@ USER medusa
 ENV NPM_CONFIG_CACHE=/home/medusa/.npm
 
 # Copiar archivos del proyecto con los permisos correctos
-COPY --chown=medusa:medusa package.json yarn.lock ./
+COPY --chown=medusa:medusa package.json yarn.lock* ./
 
 # Instalar dependencias
 RUN yarn global add @medusajs/medusa-cli@latest
