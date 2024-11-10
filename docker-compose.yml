@@ -30,7 +30,7 @@ services:
     ports:
       - "7700:7700"
     environment:
-      - MEDUSA_BACKEND_URL=http://34.57.128.166:9000
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://34.57.128.166:9000
       - NODE_OPTIONS=--openssl-legacy-provider
     networks:
       - medusa-network
