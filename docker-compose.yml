@@ -8,9 +8,9 @@ services:
       - "9000:9000"
       - "7001:7001"
     environment:
-      - DATABASE_URL=postgres://TEST:TESTTEST@34.122.99.107:5432/medusa_db
-      - JWT_SECRET=something
-      - COOKIE_SECRET=something
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - COOKIE_SECRET=${COOKIE_SECRET}
       - DATABASE_TYPE=postgres
       - ADMIN_CORS=http://${IP_ADDRESS}:7700
       - STORE_CORS=http://${IP_ADDRESS}:8000,http://${IP_ADDRESS}:8100
@@ -44,7 +44,7 @@ services:
       - "8100:8100"
     environment:
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://${IP_ADDRESS}:9000
-      - NEXT_PUBLIC_MEDUSA_API_KEY=pk_01JBB9STPSNXS0ZGFEQ7VDGB5T
+      - NEXT_PUBLIC_MEDUSA_API_KEY=${MEDUSA_API_KEY}
       - REVALIDATE_WINDOW=10
       - NODE_ENV=development
     depends_on:
@@ -55,5 +55,3 @@ services:
 networks:
   medusa-network:
     driver: bridge
-x-environment:
-  IP_ADDRESS: cccccccccccc
