@@ -1,4 +1,3 @@
-Here's the updated version of your setup instructions in English and formatted in Markdown for your `README` file:
 
 # Medusa E-commerce Project Setup (2024)
 
